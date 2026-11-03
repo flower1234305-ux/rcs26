@@ -48,7 +48,6 @@ Folder*), and restart Rhino.
 | **Roof Drawing** | `file`, `openings` (curves), `planters` (curves), `drains` (points) | `drawing`, `outlines` |
 | **Roof Design** | `brief`, `drawing`, `run` | `roof`, `design`, `bounds`, `pieces`, `names`, `report` |
 | **Roof Piece** | `roof`, `brief`, `name`, `voxel`, `run` | `mesh`, `report` |
-| **Roof Print** | `roof`, `brief`, `name`, `scale`, `printer`, `file`, `run` | `mesh`, `report` |
 
 Unwired inputs keep the defaults: the brief's numbers, the sample drawing.
 
@@ -58,7 +57,6 @@ Unwired inputs keep the defaults: the brief's numbers, the sample drawing.
 sliders ─────────► Roof Brief ──┬──────────────────────────────┐
 curves, points ──► Roof Drawing ─┴► Roof Design ─ design, bounds ─► Volumetric Mesh
                                          └─ roof, names ──────────► Roof Piece ─► mesh
-                                                                    Roof Print ─► STL for PrusaSlicer
 ```
 
 1. **Roof Brief**: wire number sliders to the values you want to change.
@@ -71,9 +69,6 @@ curves, points ──► Roof Drawing ─┴► Roof Design ─ design, bounds �
    `report` holds the checks for water, light and the kit.
 4. **Roof Piece**: pick a piece by name from `names` (a **List Item** works). About 4
    seconds at 40 mm. Bake `mesh` to export it.
-5. **Roof Print**: the same piece as a sample at 1:`scale` for the Prusa, about three
-   minutes for a panel. Give `file` a path ending in `.stl` and slice it ([print](print.md)).
-   Keep `run` False until the design is settled.
 
 Set `run` to `False` with a **Boolean Toggle** to hold a result while you change things
 upstream.

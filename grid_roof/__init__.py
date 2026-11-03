@@ -7,7 +7,6 @@ An application of compas_vol. On a Grasshopper canvas its parts would be:
 * :mod:`grid_roof.design` -- the components, one function per step;
   :func:`design_roof` runs them all, like a cluster.
 * :mod:`grid_roof.checks`, :mod:`grid_roof.preview` -- panels and the viewport.
-* :mod:`grid_roof.printing` -- a piece as a sample for a desktop printer.
 * :mod:`grid_roof.nodes` -- the Grasshopper components, as plain functions.
 
 :class:`Drainage`, :class:`Incision`, :class:`VolHeightField`,
@@ -15,7 +14,7 @@ An application of compas_vol. On a Grasshopper canvas its parts would be:
 here.
 """
 
-from . import nodes, preview, printing
+from . import nodes, preview
 from .brief import Brief
 from .checks import beam_depth, clear_apertures
 from .design import (
@@ -75,7 +74,6 @@ __all__ = [
     "plan_mask",
     "nodes",
     "preview",
-    "printing",
     "region",
     "slab",
     "soffit",

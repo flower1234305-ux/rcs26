@@ -13,7 +13,7 @@ from .checks import beam_depth, clear_apertures
 from .design import design_roof
 from .drawing import Drawing
 
-__all__ = ["brief", "drawing", "design", "report", "pieces", "piece", "sample"]
+__all__ = ["brief", "drawing", "design", "report", "pieces", "piece"]
 
 
 def brief(file=None, **numbers):
@@ -119,18 +119,3 @@ def piece(built, brief, name, voxel=None):
     if target.role in ("node", "beam"):
         lines.append("least beam depth: {:.0f} mm".format(beam_depth(processed, built.beams, target.bounds)))
     return vertices, faces, "\n".join(lines)
-
-
-def sample(built, brief, name, scale=20.0, printer="core-one-l", file=None):
-    """One piece as a sample to print: ``(vertices, faces, summary)``, in print mm.
-
-    Written to ``file`` as an STL when one is given. See :mod:`grid_roof.printing`.
-    """
-    from compas_vol.meshing import write_stl
-
-    from .printing import sample as make
-
-    printable = make(brief, built.design, built.weathering, name, scale=scale or 20.0, printer=printer or "core-one-l")
-    if file:
-        write_stl(file, printable.vertices, printable.faces, name=name)
-    return printable.vertices, printable.faces, printable.summary()

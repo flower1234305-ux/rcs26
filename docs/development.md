@@ -4,7 +4,7 @@
 
 ```bash
 uv sync --extra notebook --group dev
-uv run python -m pytest        # tests and doctests, about a minute
+uv run python -m pytest        # tests and doctests, about 20 seconds
 uv run ruff check .
 ```
 

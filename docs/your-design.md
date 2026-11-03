@@ -93,8 +93,8 @@ in Step 9: `roof.planter_margins(brief, drawing)`.
 
 ## What to commit
 
-Commit `brief.json`, `drawing.json`, the notebook and your code. Leave out `out/`,
-`prints/` and STLs; `.gitignore` already does.
+Commit `brief.json`, `drawing.json`, the notebook and your code. Leave out `out/` and
+STLs; `.gitignore` already does.
 
 ```bash
 git add -A

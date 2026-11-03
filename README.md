@@ -23,8 +23,7 @@ Step by step, with checks: [install](docs/install.md).
 
 ```bash
 uv run jupyter lab walkthrough.ipynb       # the design, step by step
-uv run python print_sample.py panel_0_1_00 # one piece, ready for PrusaSlicer
-uv run python build.py --out out           # every piece, with a manifest of checks
+uv run python build.py --out out           # every piece as an STL, with a manifest of checks
 ```
 
 ## Documentation
@@ -37,7 +36,6 @@ Read them in this order the first time.
 | working in the notebook | [notebook](docs/notebook.md) |
 | the steps, and the rule each one keeps | [workflow](docs/workflow.md) |
 | your own design: brief, drawing, a new rule | [your design](docs/your-design.md) |
-| a sample on the Prusa CORE One L or XL | [print](docs/print.md) |
 | building every piece, at any resolution | [build](docs/build.md) |
 
 Also: [grasshopper](docs/grasshopper.md), the same steps as Rhino 8 components (optional),

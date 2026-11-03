@@ -54,4 +54,4 @@ Then read [notebook](notebook.md).
 | `uv sync` fails building scikit-fmm on macOS | `xcode-select --install`, then `uv sync --extra notebook` again |
 | Jupyter: `ModuleNotFoundError: grid_roof` | start Jupyter with `uv run`, from the `grid-roof` folder |
 | a cell runs for minutes, or the computer stalls | Step 1's `voxel` is too fine for this laptop: back to 40 |
-| `MemoryError` building a piece to print | close other programs; or `--voxel 16` ([print](print.md)) |
+| `MemoryError` building a piece | close other programs; or a coarser `--voxel` ([build](build.md)) |

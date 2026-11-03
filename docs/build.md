@@ -33,5 +33,5 @@ A feature needs about three voxels to survive, so the voxel sets the finest deta
 
 ## Printing
 
-These STLs are at full scale, for fabrication at full size. For a sample on a desktop
-printer, use `print_sample.py`, which makes a piece printable at a scale: [print](print.md).
+The STLs are at full scale, in mm. To print a sample, open a piece in a slicer and scale it
+there. Walls and dowel fits shrink with it, so check them at small scales.

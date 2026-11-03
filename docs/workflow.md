@@ -22,7 +22,6 @@ the brief and what the steps before it made, and returns its result.
 | 8 | `keep`, `design` | what no later step may remove, and the design itself |
 | 10 | `kit` | nodes, beams and panels, with joints placed where both sides are solid |
 | 11 | `weathering` | the process each piece goes through: pitting and wear |
-| 15 | `printing.sample` | one piece as a sample to print ([print](print.md)) |
 
 Steps 1, 2, 9 and 12 to 14 of the notebook are the inputs, checks and building.
 `design_roof(brief, drawing)` runs steps 3 to 11 in one call.
