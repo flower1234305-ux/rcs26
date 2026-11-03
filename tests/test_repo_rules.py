@@ -11,7 +11,8 @@ import subprocess
 import pytest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECTS = sorted(os.path.basename(os.path.dirname(p)) for p in glob.glob(os.path.join(ROOT, "projects", "*", "pyproject.toml")))
+FOUND = glob.glob(os.path.join(ROOT, "projects", "*", "pyproject.toml"))
+PROJECTS = sorted(os.path.basename(os.path.dirname(p)) for p in FOUND)
 CAD = {"Rhino", "rhinoscriptsyntax", "scriptcontext", "ghpythonlib", "System", "clr"}
 
 
@@ -51,7 +52,7 @@ def python_files(project):
 @pytest.mark.parametrize("project", PROJECTS)
 def test_every_project_names_its_owner(project):
     text = open(os.path.join(ROOT, "projects", project, "pyproject.toml"), encoding="utf-8").read()
-    assert re.search(r'^\[tool\.studio\]\s*\nowner\s*=\s*"[^"]+"', text, re.M), "add [tool.rcs26] owner = \"...\""
+    assert re.search(r'^\[tool\.rcs26\]\s*\nowner\s*=\s*"[^"]+"', text, re.M), "add [tool.rcs26] owner = \"...\""
 
 
 @pytest.mark.parametrize("project", PROJECTS)
