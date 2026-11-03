@@ -1,0 +1,12 @@
+# Files everyone depends on need the maintainer's review. Projects have no entry
+# here on purpose, so any other student can review a project's pull request.
+/.github/          @ChiaChing-Yen
+/scripts/          @ChiaChing-Yen
+/templates/        @ChiaChing-Yen
+/tests/            @ChiaChing-Yen
+/pyproject.toml    @ChiaChing-Yen
+/uv.lock           @ChiaChing-Yen
+/AGENTS.md         @ChiaChing-Yen
+/CLAUDE.md         @ChiaChing-Yen
+/CONTRIBUTING.md   @ChiaChing-Yen
+/docs/             @ChiaChing-Yen

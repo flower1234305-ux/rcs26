@@ -1,20 +1,11 @@
-[project]
-# An application of compas_vol, not a library: one roof, its brief, its
-# drawing and its checks. compas_vol stays general; this is where what was
-# specific to the roof lives.
-name = "grid-roof"
-version = "0.1.0"
-description = "The grid roof: an 18 x 12 m eroded roof on a 6 m beam grid, designed whole and built in pieces"
-requires-python = ">=3.9"   # Rhino 8 embeds 3.9
-dependencies = [
-    "compas-vol[meshing,processes]",
-    "matplotlib>=3.9",
-]
+# The studio workspace: one environment and one lockfile for every project in
+# projects/. compas_vol is pinned here, once, so everyone builds on the same
+# release. To change it, see docs/maintaining.md.
+[tool.uv.workspace]
+members = ["projects/*"]
 
-[project.optional-dependencies]
-notebook = [
-    "jupyterlab>=4",
-]
+[tool.uv.sources]
+compas-vol = { git = "https://github.com/rccn-dev/compas_vol", tag = "v0.3.0" }
 
 [dependency-groups]
 dev = [
@@ -23,26 +14,26 @@ dev = [
     "nbformat>=5",
     "nbclient>=0.10",
     "ipykernel>=6",
+    "jupyterlab>=4",
+    "nbstripout>=0.8",
+    "pre-commit>=4; python_version >= '3.10'",
 ]
 
-[tool.uv.sources]
-compas-vol = { path = "../compas_vol", editable = true }
-
-[build-system]
-requires = ["uv_build>=0.12.1,<0.14.0"]
-build-backend = "uv_build"
-
-[tool.uv.build-backend]
-module-name = "grid_roof"
-module-root = ""
-
 [tool.pytest.ini_options]
-addopts = "--doctest-modules"
-testpaths = ["tests", "grid_roof"]
+addopts = "--doctest-modules --import-mode=importlib --ignore-glob=*/grasshopper/*"
+testpaths = ["tests", "projects"]
+filterwarnings = [
+    # scikit-image's marching cubes still assigns to ndarray.shape, which
+    # NumPy 2.5 deprecates. Nothing we can act on from here.
+    "ignore:Setting the shape on a NumPy array has been deprecated:DeprecationWarning",
+]
 
 [tool.ruff]
 line-length = 120
+# Rhino 8 embeds Python 3.9, and workflows become Grasshopper components.
 target-version = "py39"
+extend-exclude = ["templates"]
+builtins = ["ghenv"]
 
 [tool.ruff.lint]
 select = ["E", "W", "F", "NPY"]

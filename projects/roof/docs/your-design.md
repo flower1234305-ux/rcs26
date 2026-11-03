@@ -1,17 +1,7 @@
-# Your design
+# Changing the roof
 
-The roof is a template: a brief, a drawing, a few steps, and a check for every rule. A
-design of your own keeps that shape.
-
-## Start a copy
-
-1. On [grid-roof](https://github.com/rccn-dev/grid-roof), choose **Use this template ›
-   Create a new repository**. Make it public, under your account or your team's.
-2. Clone your copy next to compas_vol, as in [install](install.md), and run the
-   walkthrough once, unchanged, to see that it works.
-
-Keep the package name `grid_roof`, so the notebook and the scripts keep working. Rewrite
-the README's first paragraph for your design.
+The roof is a worked example: a brief, a drawing, a few steps, and a check for every rule.
+Your own project keeps that shape, and these are the same edits you would make there.
 
 ## Change it, in this order
 
@@ -84,20 +74,9 @@ def test_planters_keep_their_margin(brief, drawing):
 ```
 
 ```bash
-uv run --group dev python -m pytest -k margin
+uv run python -m pytest projects/roof -k margin
 ```
 
 It passes: the sample planters are 1940 to 3528 mm from the edge. Set `planter_margin`
 to 2000 and it fails: one planter is 1940 mm away. In the notebook, print the check
 in Step 9: `roof.planter_margins(brief, drawing)`.
-
-## What to commit
-
-Commit `brief.json`, `drawing.json`, the notebook and your code. Leave out `out/` and
-STLs; `.gitignore` already does.
-
-```bash
-git add -A
-git commit -m "Planters keep 1 m from the edge"
-git push
-```

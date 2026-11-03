@@ -1,0 +1,15 @@
+# Installed by `uv run pre-commit install`. These use the versions in uv.lock,
+# so what runs here is what CI runs.
+repos:
+  - repo: local
+    hooks:
+      - id: nbstripout
+        name: strip notebook outputs
+        entry: uv run --no-sync nbstripout --extra-keys "metadata.language_info cell.metadata.ExecuteTime"
+        language: system
+        types: [jupyter]
+      - id: ruff
+        name: ruff
+        entry: uv run --no-sync ruff check --force-exclude
+        language: system
+        types_or: [python, jupyter]

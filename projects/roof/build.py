@@ -1,9 +1,9 @@
 """Build the grid roof piece by piece.
 
-    uv run python build.py                                # every piece at the brief's voxel (40 mm)
-    uv run python build.py --out out                      # also the plan, STLs and a manifest
-    uv run python build.py --voxel 12 --out out           # production
-    uv run python build.py --voxel 12 --pieces beam,node  # one machine's share
+    uv run python projects/roof/build.py                                # every piece at the brief's voxel (40 mm)
+    uv run python projects/roof/build.py --out out                      # also the plan, STLs and a manifest
+    uv run python projects/roof/build.py --voxel 12 --out out           # production
+    uv run python projects/roof/build.py --voxel 12 --pieces beam,node  # one machine's share
 
 Reads brief.json and drawing.json when present, the defaults otherwise.
 """

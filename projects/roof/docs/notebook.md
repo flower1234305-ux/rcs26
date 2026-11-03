@@ -4,7 +4,7 @@
 definition: one cell per group of components, with the code as the parameters.
 
 ```bash
-uv run jupyter lab walkthrough.ipynb
+uv run jupyter lab projects/roof/walkthrough.ipynb
 ```
 
 ## Jupyter in brief
@@ -15,7 +15,7 @@ uv run jupyter lab walkthrough.ipynb
 | run everything | *Run › Run All Cells* |
 | start again clean | *Kernel › Restart Kernel and Run All Cells* |
 | stop a long cell | the ■ button |
-| undo all your changes to the notebook | `git restore walkthrough.ipynb` |
+| undo all your changes to the notebook | `git restore projects/roof/walkthrough.ipynb` |
 
 Cells run in order and remember what earlier cells made: after a change, rerun from that
 cell down.

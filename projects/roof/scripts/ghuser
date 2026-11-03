@@ -14,7 +14,7 @@
 # there (docs/grasshopper.md), or deploy compas_vol's own dev build.
 #
 # Environment:
-#   GHUSER_BUILDER         ghuser-builder checkout (default: ../ghuser-builder, then ../../ghuser-builder)
+#   GHUSER_BUILDER         ghuser-builder checkout (default: next to this repository, then one level up)
 #   GHUSER_BUILDER_IMAGE   image to run (default: the registry's 1.0.0)
 
 set -euo pipefail
@@ -29,7 +29,7 @@ cd "$root"
 builder=${GHUSER_BUILDER:-}
 if [ -z "$builder" ]; then
     found=()
-    for candidate in ../ghuser-builder ../../ghuser-builder; do
+    for candidate in ../../../ghuser-builder ../../../../ghuser-builder; do
         [ -d "$candidate/tools" ] && found+=("$(cd "$candidate" && pwd)")
     done
     if [ ${#found[@]} -gt 0 ]; then

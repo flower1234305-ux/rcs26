@@ -5,10 +5,10 @@ has to fit in memory. It reads `brief.json` and `drawing.json` when present, the
 otherwise.
 
 ```bash
-uv run python build.py                                 # every piece at the brief's voxel (40 mm)
-uv run python build.py --out out                       # also write STLs, a plan and a manifest
-uv run python build.py --voxel 12 --out out            # production resolution
-uv run python build.py --voxel 12 --pieces panel_0_1_00 --out out   # one piece, by name or role
+uv run python projects/roof/build.py                                 # every piece at the brief's voxel (40 mm)
+uv run python projects/roof/build.py --out out                       # also write STLs, a plan and a manifest
+uv run python projects/roof/build.py --voxel 12 --out out            # production resolution
+uv run python projects/roof/build.py --voxel 12 --pieces panel_0_1_00 --out out   # one piece, by name or role
 ```
 
 ## Output

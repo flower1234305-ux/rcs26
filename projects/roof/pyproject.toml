@@ -1,0 +1,23 @@
+[project]
+# An application of compas_vol, not a library: one roof, its brief, its
+# drawing and its checks. compas_vol stays general; this is where what was
+# specific to the roof lives.
+name = "grid-roof"
+version = "0.1.0"
+description = "The grid roof: an 18 x 12 m eroded roof on a 6 m beam grid, designed whole and built in pieces"
+requires-python = ">=3.9"   # Rhino 8 embeds 3.9
+dependencies = [
+    "compas-vol[meshing,processes]",
+    "matplotlib>=3.9",
+]
+
+[tool.studio]
+owner = "ChiaChing-Yen"
+
+[build-system]
+requires = ["uv_build>=0.12.1,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "grid_roof"
+module-root = ""

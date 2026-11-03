@@ -5,3 +5,5 @@ out/
 *.stl
 build/
 dist/
+.ruff_cache/
+.pytest_cache/

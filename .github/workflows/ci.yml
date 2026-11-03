@@ -1,0 +1,54 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, python: "3.13" }
+          - { os: ubuntu-latest, python: "3.9" }   # the floor: Rhino 8 embeds it
+          - { os: macos-latest, python: "3.13" }
+          - { os: windows-latest, python: "3.13" }
+    env:
+      UV_PYTHON: ${{ matrix.python }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Install
+        run: uv sync --all-packages --locked
+      - name: Lint
+        run: uv run --no-sync ruff check .
+      - name: Test
+        run: uv run --no-sync python -m pytest
+
+  notebooks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Install
+        run: uv sync --all-packages --locked
+      - name: Run every notebook
+        run: uv run --no-sync python scripts/run_notebooks.py
+
+  # The one check branch protection requires, so adding a job or a Python
+  # version never means changing the repository's settings.
+  ci-ok:
+    if: always()
+    needs: [test, notebooks]
+    runs-on: ubuntu-latest
+    steps:
+      - name: All jobs passed
+        run: test "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}" = "false"

@@ -1,0 +1,23 @@
+name: Bug
+description: Something gives the wrong result or fails
+labels: [bug]
+body:
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: The smallest code that shows it
+      description: A few lines someone else can paste and run, or a failing test. Leave your project out if you can.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected, and what happened
+      description: For wrong geometry, the query point and the distance you got pin it down best.
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Project or compas_vol module
