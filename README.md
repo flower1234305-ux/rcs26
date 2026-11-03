@@ -1,4 +1,4 @@
-# Studio
+# RCS26
 
 Building-scale porous structures, designed as signed distance fields. Each student
 develops their own workflow here, for a roof, a wall or a landscape, on top of the
@@ -16,8 +16,8 @@ as 53 pieces.
 ## Start
 
 ```bash
-git clone https://github.com/rccn-dev/studio
-cd studio
+git clone https://github.com/rccn-dev/rcs26
+cd rcs26
 uv sync --all-packages
 uv run pre-commit install
 uv run python -m pytest

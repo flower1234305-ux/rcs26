@@ -51,7 +51,7 @@ def python_files(project):
 @pytest.mark.parametrize("project", PROJECTS)
 def test_every_project_names_its_owner(project):
     text = open(os.path.join(ROOT, "projects", project, "pyproject.toml"), encoding="utf-8").read()
-    assert re.search(r'^\[tool\.studio\]\s*\nowner\s*=\s*"[^"]+"', text, re.M), "add [tool.studio] owner = \"...\""
+    assert re.search(r'^\[tool\.studio\]\s*\nowner\s*=\s*"[^"]+"', text, re.M), "add [tool.rcs26] owner = \"...\""
 
 
 @pytest.mark.parametrize("project", PROJECTS)

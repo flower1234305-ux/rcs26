@@ -8,7 +8,7 @@ dependencies = [
     "matplotlib>=3.9",
 ]
 
-[tool.studio]
+[tool.rcs26]
 owner = "TEMPLATE_OWNER"
 
 [build-system]

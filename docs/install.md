@@ -22,13 +22,13 @@ git config --global user.email "you@example.com"
 ## 2 · Clone and install
 
 ```bash
-git clone https://github.com/rccn-dev/studio
-cd studio
+git clone https://github.com/rccn-dev/rcs26
+cd rcs26
 uv sync --all-packages
 uv run pre-commit install
 ```
 
-The first `uv sync` takes a few minutes. Run every later command from this `studio` folder.
+The first `uv sync` takes a few minutes. Run every later command from this `rcs26` folder.
 `pre-commit` strips notebook outputs and runs the linter each time you commit.
 
 ## 3 · Check
@@ -47,6 +47,6 @@ without a red error, in about a minute.
 |---|---|
 | `git` or `uv`: command not found | open a new terminal; on Windows, sign out and in again |
 | `uv sync` fails building scikit-fmm on macOS | `xcode-select --install`, then `uv sync --all-packages` again |
-| Jupyter: `ModuleNotFoundError` for your package | `uv sync --all-packages`, then start Jupyter with `uv run`, from the `studio` folder |
+| Jupyter: `ModuleNotFoundError` for your package | `uv sync --all-packages`, then start Jupyter with `uv run`, from the `rcs26` folder |
 | a cell runs for minutes, or the computer stalls | the brief's voxel or resolution is too fine for this laptop |
 | `MemoryError` building a piece | close other programs; or a coarser voxel |

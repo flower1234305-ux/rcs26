@@ -1,6 +1,6 @@
 # Maintaining
 
-For whoever runs the studio.
+For whoever runs the course.
 
 ## GitHub settings
 

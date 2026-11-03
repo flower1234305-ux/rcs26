@@ -11,7 +11,7 @@ dependencies = [
     "matplotlib>=3.9",
 ]
 
-[tool.studio]
+[tool.rcs26]
 owner = "ChiaChing-Yen"
 
 [build-system]

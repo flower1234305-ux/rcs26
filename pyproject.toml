@@ -1,4 +1,4 @@
-# The studio workspace: one environment and one lockfile for every project in
+# The RCS26 workspace: one environment and one lockfile for every project in
 # projects/. compas_vol is pinned here, once, so everyone builds on the same
 # release. To change it, see docs/maintaining.md.
 [tool.uv.workspace]

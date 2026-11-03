@@ -4,7 +4,7 @@ Instructions for AI coding agents in this repository. Read `CONTRIBUTING.md` too
 
 ## What this is
 
-A studio repository where six students each develop a workflow for building-scale porous structures, designed as signed distance fields. Forms come from mathematics (TPMS) and from processes (water channels, erosion, growth), all as fields. It is a uv workspace: one environment and one `uv.lock` for all of `projects/*`, with `compas_vol` pinned to a release in the root `pyproject.toml`.
+The RCS26 studio repository, where six students each develop a workflow for building-scale porous structures, designed as signed distance fields. Forms come from mathematics (TPMS) and from processes (water channels, erosion, growth), all as fields. It is a uv workspace: one environment and one `uv.lock` for all of `projects/*`, with `compas_vol` pinned to a release in the root `pyproject.toml`.
 
 ## Commands
 
