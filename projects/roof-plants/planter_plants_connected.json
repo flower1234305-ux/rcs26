@@ -1,0 +1,8 @@
+{
+ "note": "planter_plants.json for drawing_connected.json: planters 1 and 3 of drawing.json joined into one (index 1), which keeps planter 1's plant. See docs/roof-plants.md, v2.",
+ "planters": [
+  {"index": 0, "plant": "control"},
+  {"index": 1, "plant": "group3_upright"},
+  {"index": 2, "plant": "group1_creeping"}
+ ]
+}

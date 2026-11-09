@@ -1,0 +1,9 @@
+{
+ "note": "STAND-IN, not the design (2026-11-09). planter_plants.json is the intended planting, but group3_upright at depth 400 does not fit P1 (PlanterFitError: depth at most 366 mm) and the choices that would make it fit are Wei's. Until then P1 grows control here so that the notebook, the build and the tests can run. See docs/roof-plants.md, v2, item 5 (the options table).",
+ "planters": [
+  {"index": 0, "plant": "control"},
+  {"index": 1, "plant": "control"},
+  {"index": 2, "plant": "group1_creeping"},
+  {"index": 3, "plant": "control"}
+ ]
+}

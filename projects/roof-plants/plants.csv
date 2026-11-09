@@ -1,0 +1,4 @@
+﻿id,name_zh,root_type,growth,offset,rim,depth,depth_datum,source,name_sci,name_common,soil_depth_min_mm,soil_depth_rec_mm,root_spread_mm,mature_weight_kg_m2,water_need,drought_tolerance,sun_need,source_pages
+control,對照組（原版花台）,原版設定，不對應特定植物,原版設定，不對應特定植物,0,220,350,nominal,假設值，無文獻來源（2026-11-03 Black_cat 暫定）,,,,,,0,,,,mature_weight_kg_m2 = 0：對照組不對應植物，不計入（2026-11-09）
+group1_creeping,第一組：匍匐型,節上生根（不定根），根系淺,匍匐、水平蔓延,300,400,200,local_min,假設值，無文獻來源（2026-11-03 Black_cat 暫定）,,,,,,10,,,,mature_weight_kg_m2：FLL 2018 表 26 p.117（2026-11-09 Wei 核准）
+group3_upright,第三組：直立型,鬚根，淺根,直立,-300,80,400,local_min,假設值：offset、rim 無文獻來源（2026-11-03 Black_cat 暫定）。depth 400 依《建築基地綠化設計技術規範》表 1 灌木類屋頂最小覆土 0.4 m，2026-11-09 Wei 核准（2026-11-03 暫定 400，2026-11-07 曾因 P1 放不下下修為 360）,,,,,,20,,,,mature_weight_kg_m2：FLL 2018 表 26 p.117（2026-11-09 Wei 核准）

@@ -1,0 +1,9 @@
+{
+ "note": "One plant id per planter, in the order of drawing.json 'planters'. See docs/roof-plants.md.",
+ "planters": [
+  {"index": 0, "plant": "control"},
+  {"index": 1, "plant": "group3_upright"},
+  {"index": 2, "plant": "group1_creeping"},
+  {"index": 3, "plant": "control"}
+ ]
+}
