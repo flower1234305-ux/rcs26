@@ -19,8 +19,11 @@ uv run python scripts/run_notebooks.py roof-plants
 uv run python -m roof_plants.plant_build --out out        # all 53 pieces at 40 mm, a few minutes
 ```
 
-`plant_build` reads `drawing.json`, `plants.json` and `planter_plants.json` from this folder, and
-`brief.json` from the current folder when present, as `projects/roof/build.py` does.
+`plant_build` reads `brief.json` (when present; `--brief` to choose another), `drawing.json`,
+`plants.json` and `planter_plants.json` (`--planters`) from this folder, which is where the notebook
+reads them, wherever you run it from. Without `brief.json` it uses the `Brief()` defaults. The
+intended planting does not fit at present; `--planters projects/roof-plants/planter_plants_fallback.json`
+builds the stand-in (see `docs/roof-plants.md`, v2, item 5).
 
 ## Steps
 

@@ -2,9 +2,10 @@
 
     uv run python -m roof_plants.plant_build --out out     # all 53 pieces at 40 mm, a few minutes
 
-Run it from the repository root. Reads brief.json from the current folder when present, like
-projects/roof/build.py, and drawing.json, plants.json and planter_plants.json (or --planters) from
-projects/roof-plants. Writes one STL per piece, the merged roof and results.json.
+Run it from the repository root. Reads brief.json (or --brief) when present, drawing.json, plants.json
+and planter_plants.json (or --planters) from projects/roof-plants, the folder the notebook reads, as
+projects/roof/build.py reads its own folder. Without brief.json it uses the Brief() defaults.
+Writes one STL per piece, the merged roof and results.json.
 Exits with 1 if a check fails or a piece is not watertight.
 """
 
@@ -35,6 +36,15 @@ PROJECT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #: The stand-in planting, to name when the intended one does not fit.
 FALLBACK = "planter_plants_fallback.json"
+
+
+def here(*parts):
+    """A path in the project folder, relative to the current folder when it can be, for messages."""
+    path = os.path.join(PROJECT, *parts)
+    try:
+        return os.path.relpath(path)
+    except ValueError:          # another drive, on Windows
+        return path
 
 
 def stand_in(planting):
@@ -75,13 +85,16 @@ def passed(rows, water, result):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    parser.add_argument("--brief", default=os.path.join(PROJECT, "brief.json"),
+                        help="brief JSON (default: projects/roof-plants/brief.json, if it exists)")
     parser.add_argument("--out", default="out")
     parser.add_argument("--voxel", type=float, help="override the brief's voxel size, in mm")
     parser.add_argument("--planters", default=os.path.join(PROJECT, "planter_plants.json"),
                         help="which plant grows in each planter; planter_plants_fallback.json is the stand-in")
     args = parser.parse_args()
 
-    brief = Brief.load("brief.json") if os.path.exists("brief.json") else Brief()
+    brief = Brief.load(args.brief) if os.path.exists(args.brief) else Brief()
+    print("brief from:", args.brief if os.path.exists(args.brief) else "Brief() defaults")
     if args.voxel:
         brief.voxel = args.voxel
     drawing = Drawing.load(os.path.join(PROJECT, "drawing.json"))
@@ -98,8 +111,8 @@ def main():
         built = design_roof(brief, drawing, steps=plant_steps_drained(brief, specs))
     except PlanterFitError as error:
         print("does not fit:", error)
-        print("the stand-in that fits: --planters projects/roof-plants/{} (P1 grows control; "
-              "see projects/roof-plants/docs/roof-plants.md, v2, item 5)".format(FALLBACK))
+        print("the stand-in that fits: --planters {} (P1 grows control; see {}, v2, item 5)".format(
+            here(FALLBACK), here("docs", "roof-plants.md")))
         return 1
     rows = drained_planter_rows(brief, drawing, specs, built)
     water = water_check(built.incision)

@@ -137,8 +137,10 @@ built = roof.design_roof(brief, drawing, steps=steps)
 
 ### 如果 repo 改成 `origin/studio-layout` 的結構
 
+> **已過時：植物程式已在 `projects/roof-plants/`；此段僅為舊 repo 紀錄。**（2026-11-10 搬入 rcs26 時標註，以下原文未改。）
+
 上游有一條分支把屋頂搬到 `projects/roof/`。試合併（`git merge-tree`）的結果：`design.py` 的掛點會自動跟過去，沒有文字衝突；
-`roof_plants/plant*.py`、`plants.py` 會報 file location 衝突，要接受 git 建議的新位置；
+`grid_roof/plant*.py`、`plants.py` 會報 file location 衝突，要接受 git 建議的新位置；
 `plants.json`、`planter_plants.json`、`plants_walkthrough.ipynb`、`docs/roof-plants.md` 和 `tests/` 裡的新測試留在原地，要手動搬進 `projects/roof/`。這條路徑只試過合併，沒有實際跑過。
 
 共用檔案的順序還沒決定。組內可以討論一種做法：梁 → 排水 → 採光／動線 → 植物，先放的成為後放的禁區。
@@ -390,11 +392,14 @@ uv run python -m roof_plants.plant_table json2csv plants.json plants.csv   # 反
 
 ### 測試與時間
 
-全部測試 `uv run python -m pytest`：v1 160 個，v2 216 個（2026-11-09 第二輪審查修正後實跑：216 passed，5 分 20 秒），`ruff check .` 無錯誤。
+- **舊 repo `grid-roof-plants` `e910bec`（舊數字，不是 rcs26 的結果）**：全部測試 `uv run python -m pytest`：v1 160 個，v2 216 個（2026-11-09 第二輪審查修正後實跑：216 passed，5 分 20 秒），`ruff check .` 無錯誤。
+- **rcs26（2026-11-10，分支 `flower1234305-ux/roof-plants`，從 repo 根目錄執行）**：`uv run python -m pytest projects/roof-plants tests` 175 passed，3 分 45 秒（本專案 163 個，含 148 個植物測試函式，和舊 repo 的植物測試數相同；另有 12 個 repo 規則測試）；`uv run ruff check .` 無錯誤。
 
 ### 已驗證／未驗證
 
 **已驗證**（有測試或實測）
+
+**(i) 舊 repo `grid-roof-plants` `e910bec` 的實測（舊數字，2026-11-09）。** 下列有測試的項目，同一批測試在 rcs26 也通過（見 (ii)）；實測的耗時與 build 結果是舊 repo 的。
 
 - 不傳 `steps` 時 `design_roof` 與原版相同（`test_design_hooks.py`）
 - 排水孔在 `design.roof`、`design.drawn`、`keep` 中都通到板底；盲孔版同一檢查不通過；孔外有 150 mm 套管；孔不在梁帶內，兩個方向的梁 500 mm 範圍仍全是保留實體；加孔不改板面；選孔與檢查的梁距規則一致（邊界測試）
@@ -404,6 +409,13 @@ uv run python -m roof_plants.plant_table json2csv plants.json plants.csv   # 反
 - 連通花台四種結果（`test_plant_connected.py`）
 - 53 塊完整 build（暫代配置、有排水孔、40 mm voxel）：53 塊全部封閉（watertight），梁最小深度 500.0 mm，所有檢查與排水孔通過，248 秒；`results.json` 的 `stand_in` 為 true、`planting_note` 為暫代說明原文（2026-11-09 審查修正後重跑）
 - notebook 從頭到尾執行無錯誤（含 `RUN_CONNECTED = True`），97 秒（2026-11-09 審查修正後重跑）；暫代時輸出檔名帶 `_standin`；提交版不含 outputs
+
+**(ii) rcs26 的實測（2026-11-10，從 repo 根目錄執行）**
+
+- pytest：`uv run python -m pytest projects/roof-plants tests` 175 passed，3 分 45 秒；`uv run ruff check .` 無錯誤
+- notebook：`uv run python scripts/run_notebooks.py roof-plants` 執行無錯誤，48 秒（預設 `RUN_ALL = False`、`RUN_CONNECTED = False`）；另在暫存複本把 `RUN_CONNECTED` 改成 `True` 跑一次，98 秒，三種啞鈴結果與上表相同（400 放不下、最多 366 mm；360 與 `control` 全部通過）
+- 53 塊完整 build：`uv run python -m roof_plants.plant_build --planters projects/roof-plants/planter_plants_fallback.json --out out`（暫代配置、預設 brief、40 mm voxel）：53 塊全部封閉（53 of 53 watertight），梁最小深度 500.0 mm，所有檢查與排水孔通過，積水 0，build 249 秒（整個指令 250 秒）；`results.json` 的 `all_ok` 與 `stand_in` 都是 true
+- 不加 `--planters` 時（設計意圖配置）在 P1 停下，印出 `depth 400.0 must be at most 366 mm` 與暫代配置的路徑，exit 1，約 2 秒
 
 **未驗證／不在範圍**
 
